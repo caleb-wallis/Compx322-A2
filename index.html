@@ -3,8 +3,7 @@
 Name: Caleb Wallis
 Student ID: 1637640
 
-Main HTML file for the event management system.
-Provides the structure for displaying event information.
+
 -->
 <html>
     <head>
@@ -19,11 +18,15 @@ Provides the structure for displaying event information.
 
         <select id="commodityDropdown"></select>
 
-
         <div id = "dashboard"></div>
-          
+
+        <div class="graph-section"><canvas id="myChart"></canvas></div>
+
+        <button onclick="clearGraph()">Clear Graph</button>
 
         <script src="commodities.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="chart.js"></script>
         <script src="widget.js"></script> 
     </body>
 </html>
