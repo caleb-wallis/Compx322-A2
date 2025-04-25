@@ -1,3 +1,5 @@
+let widgets = [];
+
 function CommodityWidget(page_element, initial_data) {
     var _this_widget_instance = this;
     var _container = page_element;
@@ -15,6 +17,11 @@ function CommodityWidget(page_element, initial_data) {
     infoEl.textContent = _info;
     _container.appendChild(infoEl);
 
+
+    function getName(){
+      return _name;
+    }
+
     // Constructor for the delete button
     function RemoveButton() {
         var _dom_element = document.createElement("input");
@@ -22,6 +29,7 @@ function CommodityWidget(page_element, initial_data) {
         _dom_element.value = "Remove";
         _dom_element.onclick = function () {
             _container.remove();
+            widgets = widgets.filter(widget => widget !== _this_widget_instance);
         };
         // Append the button to the container or return it
         _container.appendChild(_dom_element);
@@ -38,7 +46,7 @@ function CommodityWidget(page_element, initial_data) {
             const details = await requestDetails();
             showMultiChart(details);
           } catch (error) {
-            console.error("Error fetching graph data:", error);
+            console.error("Error with multi graph", error);
           }
         };
         _container.appendChild(_dom_element);
@@ -54,7 +62,7 @@ function CommodityWidget(page_element, initial_data) {
             const details = await requestDetails();
             showChart(details);
           } catch (error) {
-            console.error("Error fetching graph data:", error);
+            console.error("Error with graph", error);
           }
         };
         _container.appendChild(_dom_element);
@@ -86,7 +94,7 @@ function CommodityWidget(page_element, initial_data) {
     var add_button = new AddGraphButton();
     var del_button = new RemoveButton();
 
-
+    this.getName = getName;
 
 }
 

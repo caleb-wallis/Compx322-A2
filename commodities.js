@@ -15,7 +15,7 @@ function requestCommodities() {
       try {
         const response = JSON.parse(xhr.responseText);
         commodities = response;
-        listCommodities(response);
+        listCommodities();
       } catch (e) {
         console.error("Failed to parse JSON", xhr.responseText);
       }
@@ -29,7 +29,7 @@ function requestCommodities() {
 }
 
 
-listCommodities = (response) =>{
+function listCommodities() {
 
     // Sort commodoties alphabetically
     commodities.sort(commoditySort);
@@ -66,13 +66,17 @@ document.getElementById('commodityDropdown').addEventListener('change', function
   const selectedValue = this.value;
   console.log("You selected:", selectedValue);
 
-  const commodity = commodities.find(commodity => commodity.name === selectedValue);
-  place = document.createElement("div");
-  place.classList.add("commodity-widget");
-  placeholder = document.getElementById("dashboard");
-  placeholder.appendChild(place);
- 
-  let newList = new CommodityWidget(place, commodity);
+  const existingWidget = widgets.find(widget => widget.getName() === selectedValue);
+  if(existingWidget == null){
+    const commodity = commodities.find(commodity => commodity.name === selectedValue);
+    place = document.createElement("div");
+    place.classList.add("commodity-widget");
+    placeholder = document.getElementById("dashboard");
+    placeholder.appendChild(place);
+  
+    let newWidget = new CommodityWidget(place, commodity);
+    widgets.push(newWidget);
+  }
 });
 
 

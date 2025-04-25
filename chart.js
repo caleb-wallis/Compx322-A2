@@ -15,6 +15,22 @@ const commodity2 = {
 }
 
 
+function resetCommodities(){
+     commodity1 = {
+        name: "",
+        interval: "",
+        values : [],
+        dates : []
+    }
+    
+     commodity2 = {
+        name: "",
+        interval: "",
+        values : [],
+        dates : []
+    }
+}
+
 //Creates a chart for a single line of data
 function showChart(details){
     if(myChart){
@@ -37,6 +53,10 @@ function showChart(details){
     const config = {
         type: "line",
         data: chartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
     };
     
     myChart = new Chart(
@@ -60,9 +80,14 @@ function getData(details, commodity){
 
 //creates a chart for two lines of data
 function showMultiChart(details){
+
+    if(!commodity1.values.length || commodity2.values.length || details.name === commodity1.name){
+        return;
+    }
+
     if(myChart){
        myChart.destroy();
-   }
+    }
     
    getData(details, commodity2);
 
@@ -89,6 +114,10 @@ function showMultiChart(details){
     const config = {
         type: "line",
         data: chartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
     };
 
   myChart = new Chart(
@@ -100,8 +129,7 @@ function showMultiChart(details){
 function clearGraph(){
     if(myChart){
         myChart.destroy();      
-        
-        // reset both commodity 1 and 2
+        resetCommodities();
     }
 }
 
