@@ -3,8 +3,7 @@
  * Name: Caleb Wallis
  * Student ID: 1637640
  * 
- * This script retrieves a list of all events with their IDs and names.
- * Used to populate the initial event listing.
+ * Gets all commodities from database, puts them into an array of object literals, and returns that as JSON
  */
 
     require_once('dbconnection.php'); 

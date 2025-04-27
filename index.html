@@ -3,7 +3,7 @@
 Name: Caleb Wallis
 Student ID: 1637640
 
-
+Main interface for commodity price application
 -->
 <html>
     <head>
@@ -12,18 +12,23 @@ Student ID: 1637640
         <title>Assignment 2</title>
     </head>
     <body>
-
+        <!-- Main heading -->
         <h1>Commodity Prices</h1>
         <h2>Add a widget:</h2>
 
+        <!-- Dropdown for selecting commodities -->
         <select id="commodityDropdown"></select>
 
-        <div id = "dashboard"></div>
+        <!-- Container for commodity widgets -->
+        <div id="dashboard"></div>
 
+        <!-- Container for price graph / chart -->
         <div class="graph-section"><canvas id="myChart"></canvas></div>
 
+        <!-- Button to reset the graph -->
         <button onclick="clearGraph()">Clear Graph</button>
 
+        <!-- JavaScript files -->
         <script src="commodities.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="chart.js"></script>

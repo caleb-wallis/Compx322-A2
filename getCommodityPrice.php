@@ -1,4 +1,10 @@
 <?php
+/**
+ * Name: Caleb Wallis
+ * Student ID: 1637640
+ * 
+ * Fetches commodity price details using Alpha Vantage API and returns them as JSON
+ */
 
 $jsonData = file_get_contents("php://input");
 
@@ -11,10 +17,8 @@ if ($data === null) {
 
 $code = $data['code'];
 
-// replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
 $json = file_get_contents("https://www.alphavantage.co/query?function=$code&interval=monthly&apikey=E5EY2MM5EYM3GCZ8");
 
-//echo json_encode($json);
 echo $json;
 
 ?>
