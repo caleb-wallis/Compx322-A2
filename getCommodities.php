@@ -6,16 +6,16 @@
  * Gets all commodities from database, puts them into an array of object literals, and returns that as JSON
  */
 
-    require_once('dbconnection.php'); 
+require_once('dbconnection.php'); 
 
-    $query = "select * from `commodities`";
+$query = "select * from `commodities`";
 
-    $result = $con->query($query);
-    
-    $products = array();
-    while($row = $result->fetch()) {
-        $products[] = $row;
-    }
+$result = $con->query($query);
 
-    echo json_encode($products);
+$products = array();
+while($row = $result->fetch()) {
+    $products[] = $row;
+}
+
+echo json_encode($products);
 ?>

@@ -17,7 +17,11 @@ if ($data === null) {
 
 $code = $data['code'];
 
-$json = file_get_contents("https://www.alphavantage.co/query?function=$code&interval=monthly&apikey=E5EY2MM5EYM3GCZ8");
+$key = "E5EY2MM5EYM3GCZ8";
+//$key = "demo";
+
+
+$json = file_get_contents("https://www.alphavantage.co/query?function=$code&interval=monthly&apikey=$key");
 
 echo $json;
 

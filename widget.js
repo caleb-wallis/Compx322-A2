@@ -49,13 +49,8 @@ function CommodityWidget(page_element, initial_data) {
         const _dom_element = document.createElement("input");
         _dom_element.type = "button";
         _dom_element.value = "Add to Graph";
-        _dom_element.onclick = async function () {
-            try {
-                const details = await requestDetails();
-                showMultiChart(details);
-            } catch (error) {
-                console.error("Error with multi graph", error);
-            }
+        _dom_element.onclick = function() {
+            fetchData(_code, showMultiChart);
         };
         _container.appendChild(_dom_element);
     }
@@ -65,35 +60,10 @@ function CommodityWidget(page_element, initial_data) {
         const _dom_element = document.createElement("input");
         _dom_element.type = "button";
         _dom_element.value = "Show Graph";
-        _dom_element.onclick = async function () {
-            try {
-                const details = await requestDetails();
-                showChart(details);
-            } catch (error) {
-                console.error("Error with graph", error);
-            }
+        _dom_element.onclick = function() {
+            fetchData(_code, showChart);
         };
         _container.appendChild(_dom_element);
-    }
-
-    // Requests detailed commodity price data
-    async function requestDetails() {
-        const response = await fetch("getCommodityPrice.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                code: _code
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data;
     }
 
     // Instantiate all buttons
